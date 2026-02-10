@@ -12,9 +12,11 @@ import { checkCORP } from './checks/corp.js';
 import { checkReferrerPolicy } from './checks/referrer.js';
 import { checkCacheControl } from './checks/cache.js';
 import { checkXContentTypeOptions, checkXXSSProtection } from './checks/misc.js';
+import { checkSetCookie } from './checks/set-cookie.js';
+import { checkDNSPrefetchControl } from './checks/dns-prefetch.js';
 import { calculateGrade, meetsMinGrade, parseGrade } from './scoring.js';
-import { formatTable, formatJSON, formatSARIF } from './reporter.js';
-import type { ScanResult, HeaderCheck, Grade } from './types.js';
+import { formatTable, formatJSON, formatSARIF, formatSummary, formatQuiet } from './reporter.js';
+import type { ScanResult, HeaderCheck, Grade, ScanOptions } from './types.js';
 import * as readline from 'node:readline';
 
 const ALL_CHECKS = [
@@ -29,15 +31,17 @@ const ALL_CHECKS = [
   checkReferrerPolicy,
   checkXXSSProtection,
   checkCacheControl,
+  checkSetCookie,
+  checkDNSPrefetchControl,
 ];
 
-export async function scanUrl(url: string, timeout?: number): Promise<ScanResult> {
+export async function scanUrl(url: string, opts: ScanOptions = {}): Promise<ScanResult> {
   // Ensure URL has protocol
   if (!/^https?:\/\//i.test(url)) {
     url = `https://${url}`;
   }
 
-  const result = await fetchHeaders(url, { timeout });
+  const result = await fetchHeaders(url, opts);
   const checks: HeaderCheck[] = ALL_CHECKS.map(fn => fn(result.headers));
   const { grade, totalScore, maxScore } = calculateGrade(checks);
 
@@ -64,6 +68,18 @@ async function readStdinUrls(): Promise<string[]> {
   return urls;
 }
 
+function parseCustomHeaders(headerArgs: string[] | undefined): Record<string, string> {
+  const result: Record<string, string> = {};
+  if (!headerArgs) return result;
+  for (const h of headerArgs) {
+    const idx = h.indexOf(':');
+    if (idx > 0) {
+      result[h.slice(0, idx).trim()] = h.slice(idx + 1).trim();
+    }
+  }
+  return result;
+}
+
 async function main() {
   const program = new Command();
 
@@ -78,6 +94,13 @@ async function main() {
     .option('--min-grade <grade>', 'Minimum acceptable grade (default: C)', 'C')
     .option('--stdin', 'Read URLs from stdin (one per line)')
     .option('--timeout <ms>', 'Request timeout in milliseconds', '10000')
+    .option('--follow-redirects', 'Follow redirects (default: true)', true)
+    .option('--no-follow-redirects', 'Do not follow redirects')
+    .option('--user-agent <string>', 'Custom User-Agent string')
+    .option('--cookie <string>', 'Cookie header for authenticated scanning')
+    .option('--header <key:value>', 'Custom header (repeatable)', (val: string, prev: string[]) => [...prev, val], [] as string[])
+    .option('--verbose', 'Show detailed explanations for each check')
+    .option('--quiet', 'Output grade only')
     .action(async (urls: string[], opts) => {
       let targetUrls: string[] = urls;
 
@@ -91,11 +114,18 @@ async function main() {
       }
 
       const timeout = parseInt(opts.timeout, 10);
+      const scanOpts: ScanOptions = {
+        timeout,
+        followRedirects: opts.followRedirects,
+        userAgent: opts.userAgent,
+        cookie: opts.cookie,
+        customHeaders: parseCustomHeaders(opts.header),
+      };
       const results: ScanResult[] = [];
 
       for (const url of targetUrls) {
         try {
-          results.push(await scanUrl(url, timeout));
+          results.push(await scanUrl(url, scanOpts));
         } catch (err: any) {
           console.error(`Error scanning ${url}: ${err.message}`);
           process.exitCode = 1;
@@ -107,12 +137,17 @@ async function main() {
       }
 
       // Output
-      if (opts.sarif) {
+      if (opts.quiet) {
+        console.log(formatQuiet(results));
+      } else if (opts.sarif) {
         console.log(formatSARIF(results));
       } else if (opts.json) {
         console.log(formatJSON(results));
       } else {
-        console.log(formatTable(results));
+        console.log(formatTable(results, { verbose: opts.verbose }));
+        if (results.length > 1) {
+          console.log(formatSummary(results));
+        }
       }
 
       // CI mode
@@ -120,7 +155,7 @@ async function main() {
         const minGrade = parseGrade(opts.minGrade) ?? 'C';
         const failed = results.filter(r => !meetsMinGrade(r.grade, minGrade as Grade));
         if (failed.length > 0) {
-          if (!opts.json && !opts.sarif) {
+          if (!opts.json && !opts.sarif && !opts.quiet) {
             console.error(`\n❌ CI check failed: ${failed.length} URL(s) below grade ${minGrade}`);
           }
           process.exit(1);

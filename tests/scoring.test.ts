@@ -67,6 +67,36 @@ describe('calculateGrade', () => {
     expect(totalScore).toBe(8);
     expect(maxScore).toBe(20);
   });
+
+  it('boundary: 94% → A', () => {
+    const { grade } = calculateGrade([makeCheck(94, 100)]);
+    expect(grade).toBe('A');
+  });
+
+  it('boundary: 84% → B', () => {
+    const { grade } = calculateGrade([makeCheck(84, 100)]);
+    expect(grade).toBe('B');
+  });
+
+  it('boundary: 69% → C', () => {
+    const { grade } = calculateGrade([makeCheck(69, 100)]);
+    expect(grade).toBe('C');
+  });
+
+  it('boundary: 54% → D', () => {
+    const { grade } = calculateGrade([makeCheck(54, 100)]);
+    expect(grade).toBe('D');
+  });
+
+  it('boundary: 39% → E', () => {
+    const { grade } = calculateGrade([makeCheck(39, 100)]);
+    expect(grade).toBe('E');
+  });
+
+  it('boundary: 24% → F', () => {
+    const { grade } = calculateGrade([makeCheck(24, 100)]);
+    expect(grade).toBe('F');
+  });
 });
 
 describe('meetsMinGrade', () => {
@@ -77,12 +107,20 @@ describe('meetsMinGrade', () => {
   it('D does not meet C', () => { expect(meetsMinGrade('D', 'C')).toBe(false); });
   it('C meets C', () => { expect(meetsMinGrade('C', 'C')).toBe(true); });
   it('B meets C', () => { expect(meetsMinGrade('B', 'C')).toBe(true); });
+  it('E does not meet D', () => { expect(meetsMinGrade('E', 'D')).toBe(false); });
+  it('A meets F', () => { expect(meetsMinGrade('A', 'F')).toBe(true); });
+  it('F meets F', () => { expect(meetsMinGrade('F', 'F')).toBe(true); });
 });
 
 describe('parseGrade', () => {
   it('parses A+', () => { expect(parseGrade('A+')).toBe('A+'); });
   it('parses a (lowercase)', () => { expect(parseGrade('a')).toBe('A'); });
   it('parses F', () => { expect(parseGrade('F')).toBe('F'); });
+  it('parses B', () => { expect(parseGrade('B')).toBe('B'); });
+  it('parses C', () => { expect(parseGrade('c')).toBe('C'); });
+  it('parses D', () => { expect(parseGrade('d')).toBe('D'); });
+  it('parses E', () => { expect(parseGrade('e')).toBe('E'); });
   it('invalid → null', () => { expect(parseGrade('X')).toBeNull(); });
   it('empty → null', () => { expect(parseGrade('')).toBeNull(); });
+  it('a+ lowercase → A+', () => { expect(parseGrade('a+')).toBe('A+'); });
 });

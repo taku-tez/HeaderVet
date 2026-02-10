@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { formatJSON, formatSARIF } from '../src/reporter.js';
+import { formatJSON, formatSARIF, formatQuiet, formatSummary } from '../src/reporter.js';
 import type { ScanResult } from '../src/types.js';
 
 function makeScanResult(overrides?: Partial<ScanResult>): ScanResult {
@@ -55,5 +55,44 @@ describe('formatSARIF', () => {
   it('includes recommendation in message', () => {
     const sarif = JSON.parse(formatSARIF([makeScanResult()]));
     expect(sarif.runs[0].results[0].message.text).toContain('Recommendation');
+  });
+
+  it('multiple results combined', () => {
+    const sarif = JSON.parse(formatSARIF([makeScanResult(), makeScanResult({ url: 'https://other.com' })]));
+    expect(sarif.runs[0].results).toHaveLength(2);
+  });
+});
+
+describe('formatQuiet', () => {
+  it('single URL', () => {
+    const out = formatQuiet([makeScanResult()]);
+    expect(out).toBe('https://example.com: D');
+  });
+
+  it('multiple URLs', () => {
+    const out = formatQuiet([makeScanResult(), makeScanResult({ url: 'https://other.com', grade: 'A' })]);
+    expect(out).toContain('https://example.com: D');
+    expect(out).toContain('https://other.com: A');
+  });
+});
+
+describe('formatSummary', () => {
+  it('shows summary for multiple URLs', () => {
+    const out = formatSummary([
+      makeScanResult(),
+      makeScanResult({ url: 'https://good.com', grade: 'A', totalScore: 18, maxScore: 20 }),
+    ]);
+    expect(out).toContain('Summary');
+    expect(out).toContain('URLs scanned: 2');
+    expect(out).toContain('Worst');
+    expect(out).toContain('Best');
+  });
+
+  it('grade distribution shown', () => {
+    const out = formatSummary([
+      makeScanResult(),
+      makeScanResult({ url: 'https://b.com', grade: 'D' }),
+    ]);
+    expect(out).toContain('D×2');
   });
 });

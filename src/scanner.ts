@@ -12,6 +12,7 @@ const DEFAULT_UA = 'HeaderVet/1.0 (Security Header Scanner)';
 export async function fetchHeaders(url: string, opts: ScanOptions = {}): Promise<FetchResult> {
   const timeout = opts.timeout ?? 10000;
   const ua = opts.userAgent ?? DEFAULT_UA;
+  const followRedirects = opts.followRedirects ?? true;
   const redirectChain: RedirectHop[] = [];
 
   let currentUrl = url;
@@ -22,16 +23,24 @@ export async function fetchHeaders(url: string, opts: ScanOptions = {}): Promise
     const timer = setTimeout(() => controller.abort(), timeout);
 
     try {
+      const reqHeaders: Record<string, string> = { 'User-Agent': ua };
+      if (opts.cookie) {
+        reqHeaders['Cookie'] = opts.cookie;
+      }
+      if (opts.customHeaders) {
+        Object.assign(reqHeaders, opts.customHeaders);
+      }
+
       const res = await fetch(currentUrl, {
         method: 'GET',
-        headers: { 'User-Agent': ua },
+        headers: reqHeaders,
         redirect: 'manual',
         signal: controller.signal,
       });
 
       const hdrs = headersToRecord(res.headers);
 
-      if (res.status >= 300 && res.status < 400 && hdrs['location']) {
+      if (followRedirects && res.status >= 300 && res.status < 400 && hdrs['location']) {
         redirectChain.push({ url: currentUrl, statusCode: res.status, headers: hdrs });
         const loc = hdrs['location'];
         currentUrl = loc.startsWith('http') ? loc : new URL(loc, currentUrl).href;

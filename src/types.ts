@@ -9,7 +9,9 @@ export interface HeaderCheck {
   value: string | null;
   message: string;
   recommendation: string | null;
-  /** Points awarded (0-10 per check) */
+  /** Detailed explanation (shown with --verbose) */
+  detail?: string;
+  /** Points awarded (0-N per check) */
   score: number;
   /** Max possible points for this check */
   maxScore: number;
@@ -37,6 +39,8 @@ export interface ScanOptions {
   followRedirects?: boolean;
   timeout?: number;
   userAgent?: string;
+  cookie?: string;
+  customHeaders?: Record<string, string>;
 }
 
 export interface CliOptions {
@@ -46,6 +50,12 @@ export interface CliOptions {
   minGrade?: string;
   stdin?: boolean;
   timeout?: number;
+  verbose?: boolean;
+  quiet?: boolean;
+  followRedirects?: boolean;
+  userAgent?: string;
+  cookie?: string;
+  header?: string[];
 }
 
 export interface SarifResult {

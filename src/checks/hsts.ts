@@ -10,10 +10,11 @@ export function checkHSTS(headers: Record<string, string>): HeaderCheck {
     return {
       header: 'Strict-Transport-Security',
       status: 'missing',
-      severity: 'high',
+      severity: 'critical',
       value: null,
       message: 'Strict-Transport-Security header is missing.',
       recommendation: 'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload',
+      detail: 'HSTS forces browsers to use HTTPS for all future requests, preventing SSL stripping and downgrade attacks. Without it, users are vulnerable to man-in-the-middle attacks.',
       score: 0,
       maxScore: 10,
     };
@@ -39,14 +40,14 @@ export function checkHSTS(headers: Record<string, string>): HeaderCheck {
   if (hasIncludeSub) {
     score += 2;
   } else {
-    issues.push('Missing includeSubDomains.');
+    issues.push('Missing includeSubDomains — subdomains are not protected by HSTS.');
   }
 
   const hasPreload = /preload/i.test(value);
   if (hasPreload) {
     score += 1;
   } else {
-    issues.push('Missing preload directive.');
+    issues.push('Missing preload — consider adding to HSTS preload list for maximum protection.');
   }
 
   score = Math.max(0, Math.min(10, score));
@@ -59,6 +60,7 @@ export function checkHSTS(headers: Record<string, string>): HeaderCheck {
       value,
       message: 'HSTS is well configured with includeSubDomains and preload.',
       recommendation: null,
+      detail: 'HSTS is configured with max-age ≥ 1 year, includeSubDomains, and preload.',
       score,
       maxScore: 10,
     };
@@ -71,6 +73,7 @@ export function checkHSTS(headers: Record<string, string>): HeaderCheck {
     value,
     message: issues.join(' '),
     recommendation: 'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload',
+    detail: 'HSTS is present but could be strengthened. A max-age of at least 1 year with includeSubDomains and preload provides the best protection.',
     score,
     maxScore: 10,
   };

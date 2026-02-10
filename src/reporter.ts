@@ -1,9 +1,13 @@
 import chalk from 'chalk';
 import type { ScanResult, SarifResult, HeaderCheck, Status, Grade } from './types.js';
 
+interface TableOptions {
+  verbose?: boolean;
+}
+
 // ── Table Output ──
 
-export function formatTable(results: ScanResult[]): string {
+export function formatTable(results: ScanResult[], opts: TableOptions = {}): string {
   const out: string[] = [];
 
   for (const r of results) {
@@ -18,19 +22,24 @@ export function formatTable(results: ScanResult[]): string {
     out.push('');
 
     // Header row
-    const hdrLine = `  ${'Status'.padEnd(8)} ${'Header'.padEnd(32)} ${'Score'.padEnd(8)} Details`;
+    const hdrLine = `  ${'Status'.padEnd(8)} ${'Header'.padEnd(32)} ${'Score'.padEnd(8)} ${'Severity'.padEnd(10)} Details`;
     out.push(chalk.dim(hdrLine));
-    out.push(chalk.dim('  ' + '─'.repeat(90)));
+    out.push(chalk.dim('  ' + '─'.repeat(100)));
 
     for (const c of r.checks) {
       const icon = statusIcon(c.status);
       const scoreStr = `${c.score}/${c.maxScore}`;
-      const line = `  ${icon.padEnd(10)} ${c.header.padEnd(32)} ${scoreStr.padEnd(8)} ${c.message}`;
+      const sev = c.severity.toUpperCase().padEnd(10);
+      const line = `  ${icon.padEnd(10)} ${c.header.padEnd(32)} ${scoreStr.padEnd(8)} ${sev} ${c.message}`;
       out.push(colorLine(line, c.status));
+
+      if (opts.verbose && c.detail) {
+        out.push(chalk.dim(`  ${''.padEnd(10)} ${''.padEnd(32)} ${''.padEnd(8)} ${''.padEnd(10)} ℹ️  ${c.detail}`));
+      }
 
       if (c.recommendation) {
         for (const recLine of c.recommendation.split('\n')) {
-          out.push(chalk.yellow(`  ${''.padEnd(10)} ${''.padEnd(32)} ${''.padEnd(8)} 💡 ${recLine}`));
+          out.push(chalk.yellow(`  ${''.padEnd(10)} ${''.padEnd(32)} ${''.padEnd(8)} ${''.padEnd(10)} 💡 ${recLine}`));
         }
       }
     }
@@ -40,6 +49,48 @@ export function formatTable(results: ScanResult[]): string {
     out.push('');
   }
 
+  return out.join('\n');
+}
+
+// ── Quiet Output ──
+
+export function formatQuiet(results: ScanResult[]): string {
+  return results.map(r => `${r.url}: ${r.grade}`).join('\n');
+}
+
+// ── Summary Output (multiple URLs) ──
+
+export function formatSummary(results: ScanResult[]): string {
+  const out: string[] = [];
+  out.push('');
+  out.push(chalk.bold('📊 Summary'));
+  out.push(chalk.dim('  ' + '─'.repeat(60)));
+
+  const gradeCounts: Record<string, number> = {};
+  let totalScore = 0;
+  let totalMax = 0;
+
+  for (const r of results) {
+    gradeCounts[r.grade] = (gradeCounts[r.grade] || 0) + 1;
+    totalScore += r.totalScore;
+    totalMax += r.maxScore;
+  }
+
+  const avgPct = totalMax > 0 ? Math.round((totalScore / totalMax) * 100) : 0;
+
+  out.push(`  URLs scanned: ${results.length}`);
+  out.push(`  Average score: ${avgPct}%`);
+  out.push(`  Grade distribution: ${Object.entries(gradeCounts).map(([g, c]) => `${g}×${c}`).join(', ')}`);
+
+  // Worst URL
+  const worst = results.reduce((a, b) => (a.totalScore / a.maxScore) < (b.totalScore / b.maxScore) ? a : b);
+  out.push(`  Worst: ${worst.url} (${worst.grade})`);
+
+  // Best URL
+  const best = results.reduce((a, b) => (a.totalScore / a.maxScore) > (b.totalScore / b.maxScore) ? a : b);
+  out.push(`  Best:  ${best.url} (${best.grade})`);
+
+  out.push('');
   return out.join('\n');
 }
 
