@@ -33,8 +33,14 @@ export function checkCSP(headers: Record<string, string>): HeaderCheck {
   // unsafe-inline / unsafe-eval checks
   for (const [dir, vals] of Object.entries(directives)) {
     if (vals.includes("'unsafe-inline'")) {
-      issues.push(`'unsafe-inline' found in ${dir} — weakens CSP significantly.`);
-      score -= 3;
+      // style-src unsafe-inline is common and low risk; script-src is high risk
+      if (dir === 'script-src' || dir === 'default-src') {
+        issues.push(`'unsafe-inline' found in ${dir} — weakens CSP significantly.`);
+        score -= 3;
+      } else {
+        issues.push(`'unsafe-inline' found in ${dir} — consider removing if possible.`);
+        score -= 1;
+      }
     }
     if (vals.includes("'unsafe-eval'")) {
       issues.push(`'unsafe-eval' found in ${dir} — allows arbitrary code execution.`);

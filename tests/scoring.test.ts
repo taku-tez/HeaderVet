@@ -2,58 +2,102 @@ import { describe, it, expect } from 'vitest';
 import { calculateGrade, meetsMinGrade, parseGrade } from '../src/scoring.js';
 import type { HeaderCheck } from '../src/types.js';
 
-function makeCheck(score: number, maxScore: number): HeaderCheck {
-  return { header: 'Test', status: 'pass', severity: 'info', value: 'x', message: '', recommendation: null, score, maxScore };
+function coreCheck(header: string, present: boolean): HeaderCheck {
+  return {
+    header,
+    status: present ? 'pass' : 'missing',
+    severity: 'info',
+    value: present ? 'x' : null,
+    message: '',
+    recommendation: null,
+    score: present ? 5 : 0,
+    maxScore: 5,
+  };
 }
 
-describe('calculateGrade', () => {
-  it('100% → A+', () => {
-    const { grade } = calculateGrade([makeCheck(10, 10)]);
+function bonusCheck(header: string, present: boolean): HeaderCheck {
+  return {
+    header,
+    status: present ? 'pass' : 'missing',
+    severity: 'info',
+    value: present ? 'x' : null,
+    message: '',
+    recommendation: null,
+    score: present ? 5 : 0,
+    maxScore: 5,
+  };
+}
+
+const CORE_HEADERS = [
+  'Content-Security-Policy',
+  'Strict-Transport-Security',
+  'X-Frame-Options',
+  'X-Content-Type-Options',
+  'Referrer-Policy',
+  'Permissions-Policy',
+];
+
+const BONUS_HEADERS = [
+  'Cross-Origin-Opener-Policy',
+  'Cross-Origin-Embedder-Policy',
+  'Cross-Origin-Resource-Policy',
+  'Cache-Control',
+];
+
+function makeChecks(corePresent: number, bonusPresent: number = 0): HeaderCheck[] {
+  const checks: HeaderCheck[] = [];
+  for (let i = 0; i < CORE_HEADERS.length; i++) {
+    checks.push(coreCheck(CORE_HEADERS[i], i < corePresent));
+  }
+  for (let i = 0; i < BONUS_HEADERS.length; i++) {
+    checks.push(bonusCheck(BONUS_HEADERS[i], i < bonusPresent));
+  }
+  return checks;
+}
+
+describe('calculateGrade - core header based', () => {
+  it('6/6 core + 3 bonus → A+', () => {
+    const { grade } = calculateGrade(makeChecks(6, 3));
     expect(grade).toBe('A+');
   });
 
-  it('95% → A+', () => {
-    const { grade } = calculateGrade([makeCheck(95, 100)]);
-    expect(grade).toBe('A+');
-  });
-
-  it('90% → A', () => {
-    const { grade } = calculateGrade([makeCheck(90, 100)]);
+  it('6/6 core + 0 bonus → A', () => {
+    const { grade } = calculateGrade(makeChecks(6, 0));
     expect(grade).toBe('A');
   });
 
-  it('85% → A', () => {
-    const { grade } = calculateGrade([makeCheck(85, 100)]);
+  it('6/6 core + 2 bonus → A (not enough bonus for A+)', () => {
+    const { grade } = calculateGrade(makeChecks(6, 2));
     expect(grade).toBe('A');
   });
 
-  it('70% → B', () => {
-    const { grade } = calculateGrade([makeCheck(70, 100)]);
+  it('5/6 core → B', () => {
+    const { grade } = calculateGrade(makeChecks(5));
     expect(grade).toBe('B');
   });
 
-  it('55% → C', () => {
-    const { grade } = calculateGrade([makeCheck(55, 100)]);
+  it('4/6 core → C', () => {
+    const { grade } = calculateGrade(makeChecks(4));
     expect(grade).toBe('C');
   });
 
-  it('40% → D', () => {
-    const { grade } = calculateGrade([makeCheck(40, 100)]);
+  it('3/6 core → D', () => {
+    const { grade } = calculateGrade(makeChecks(3));
     expect(grade).toBe('D');
   });
 
-  it('25% → E', () => {
-    const { grade } = calculateGrade([makeCheck(25, 100)]);
+  it('2/6 core → E', () => {
+    const { grade } = calculateGrade(makeChecks(2));
     expect(grade).toBe('E');
   });
 
-  it('10% → F', () => {
-    const { grade } = calculateGrade([makeCheck(10, 100)]);
+  it('1/6 core → F', () => {
+    const { grade } = calculateGrade(makeChecks(1));
     expect(grade).toBe('F');
   });
 
-  it('0% → F', () => {
-    const { grade } = calculateGrade([makeCheck(0, 100)]);
+  it('0/6 core → F', () => {
+    const { grade } = calculateGrade(makeChecks(0));
     expect(grade).toBe('F');
   });
 
@@ -62,40 +106,34 @@ describe('calculateGrade', () => {
     expect(grade).toBe('F');
   });
 
-  it('multiple checks sum correctly', () => {
-    const { totalScore, maxScore } = calculateGrade([makeCheck(5, 10), makeCheck(3, 10)]);
-    expect(totalScore).toBe(8);
-    expect(maxScore).toBe(20);
+  it('scores sum correctly', () => {
+    const checks = makeChecks(3, 2);
+    const { totalScore, maxScore } = calculateGrade(checks);
+    expect(totalScore).toBe(25); // 3*5 + 2*5
+    expect(maxScore).toBe(50);   // 6*5 + 4*5
   });
 
-  it('boundary: 94% → A', () => {
-    const { grade } = calculateGrade([makeCheck(94, 100)]);
-    expect(grade).toBe('A');
+  it('fail status CSP still counts as present', () => {
+    const checks = makeChecks(5); // 5 core present
+    // Replace the missing 6th core with a "fail" (present but bad)
+    const missingIdx = checks.findIndex(c => c.status === 'missing' && CORE_HEADERS.includes(c.header));
+    if (missingIdx >= 0) {
+      checks[missingIdx].status = 'fail';
+      checks[missingIdx].score = 2;
+    }
+    const { grade } = calculateGrade(checks);
+    expect(grade).toBe('A'); // 6/6 present, no bonus → A
   });
 
-  it('boundary: 84% → B', () => {
-    const { grade } = calculateGrade([makeCheck(84, 100)]);
-    expect(grade).toBe('B');
-  });
-
-  it('boundary: 69% → C', () => {
-    const { grade } = calculateGrade([makeCheck(69, 100)]);
-    expect(grade).toBe('C');
-  });
-
-  it('boundary: 54% → D', () => {
-    const { grade } = calculateGrade([makeCheck(54, 100)]);
-    expect(grade).toBe('D');
-  });
-
-  it('boundary: 39% → E', () => {
-    const { grade } = calculateGrade([makeCheck(39, 100)]);
-    expect(grade).toBe('E');
-  });
-
-  it('boundary: 24% → F', () => {
-    const { grade } = calculateGrade([makeCheck(24, 100)]);
-    expect(grade).toBe('F');
+  it('warn status counts as present', () => {
+    const checks = makeChecks(5);
+    const missingIdx = checks.findIndex(c => c.status === 'missing' && CORE_HEADERS.includes(c.header));
+    if (missingIdx >= 0) {
+      checks[missingIdx].status = 'warn';
+      checks[missingIdx].score = 3;
+    }
+    const { grade } = calculateGrade(checks);
+    expect(grade).toBe('A'); // 6/6 present
   });
 });
 

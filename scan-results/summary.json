@@ -1,0 +1,794 @@
+{
+  "total": 259,
+  "reachable": 139,
+  "timeout": 120,
+  "grades": {
+    "F": 94,
+    "E": 30,
+    "C": 10,
+    "D": 5
+  },
+  "issues": {
+    "Content-Security-Policy": 139,
+    "Cross-Origin-Opener-Policy": 137,
+    "Cross-Origin-Embedder-Policy": 137,
+    "Referrer-Policy": 132,
+    "Permissions-Policy": 129
+  },
+  "badHosts": [
+    {
+      "url": "3-shake.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "admin.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "admin.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "admin.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "admin.api.comm.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "admin.comm.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "ai-agent-server.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "api-local.stg-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "api.stg-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "ai-agent-server.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "ai-agent-server.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "api.securify.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "api.dev-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "argo-ci.k8s.3-shake.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "cdp-console.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "cdp-console.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "cdp-server-autopilot.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "cdp-server.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "cdp-server.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "cdp-server.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "comm-stg-admin.api.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "comm-admin.api.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "comm-enterprise.api.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "comm.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "common.3-shake.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "crawl-maze.dev-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "comm.api.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "comm-stg-enterprise.api.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "dvga.dev-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "enterprise.api.comm.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "endpoint-e0esekdnegevbzfb.z03.azurefd.net",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "dash.k8s.3-shake.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "enterprise.comm.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "grpc-server.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "grpc-server.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "grpc-server.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "hooks.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "hooks.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "hooks.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "juice-shop.dev-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "new.securify.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "oagent-tunnel1.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "oagent-tunnel1.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "private-server-autopilot.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "private-server.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "private-server.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "private-server.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "report.dev-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "report.stg-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "report.securify.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "reckoner.io",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "sandbox.stg-securify.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "scheduler.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "scheduler.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "scan.securify.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "scheduler.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "security.sreake.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "streaming.reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "streaming.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "stg.3-shake.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "shireruba.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "stg.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "sreake.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "talent.comm.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "streaming.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "www.securify.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "talent.api.comm.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "www.reckoner.io",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "register.geake.tapioka.org",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "www.3-shake.com",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "talent.api.comm-stg.relance.jp",
+      "grade": "F",
+      "score": 11,
+      "max": 78
+    },
+    {
+      "url": "geake-dev.tapioka.org",
+      "grade": "F",
+      "score": 12,
+      "max": 78
+    },
+    {
+      "url": "geake.tapioka.org",
+      "grade": "F",
+      "score": 12,
+      "max": 78
+    },
+    {
+      "url": "blog.3-shake.com",
+      "grade": "F",
+      "score": 13,
+      "max": 78
+    },
+    {
+      "url": "medrisk.shinshu-md.com",
+      "grade": "F",
+      "score": 13,
+      "max": 78
+    },
+    {
+      "url": "stg.sreake.com",
+      "grade": "F",
+      "score": 13,
+      "max": 78
+    },
+    {
+      "url": "www.sreake.com",
+      "grade": "F",
+      "score": 13,
+      "max": 78
+    },
+    {
+      "url": "cdp-cdn.dev-reckoner-api.com",
+      "grade": "F",
+      "score": 14,
+      "max": 78
+    },
+    {
+      "url": "cdp-cdn.reckoner-api.com",
+      "grade": "F",
+      "score": 14,
+      "max": 78
+    },
+    {
+      "url": "cdp-cdn.stg-reckoner-api.com",
+      "grade": "F",
+      "score": 14,
+      "max": 78
+    },
+    {
+      "url": "lp.relance.jp",
+      "grade": "F",
+      "score": 14,
+      "max": 78
+    },
+    {
+      "url": "pages.reckoner.io",
+      "grade": "F",
+      "score": 14,
+      "max": 78
+    },
+    {
+      "url": "pages.securify.jp",
+      "grade": "F",
+      "score": 14,
+      "max": 78
+    },
+    {
+      "url": "pages.relance.jp",
+      "grade": "F",
+      "score": 14,
+      "max": 78
+    },
+    {
+      "url": "pages.sreake.com",
+      "grade": "F",
+      "score": 14,
+      "max": 78
+    },
+    {
+      "url": "cdp-console.reckoner-api.com",
+      "grade": "F",
+      "score": 16,
+      "max": 78
+    },
+    {
+      "url": "ec-cube.dev-securify.com",
+      "grade": "F",
+      "score": 16,
+      "max": 78
+    },
+    {
+      "url": "es-sample.tapioka.org",
+      "grade": "F",
+      "score": 16,
+      "max": 78
+    },
+    {
+      "url": "lp.3-shake.com",
+      "grade": "F",
+      "score": 18,
+      "max": 78
+    },
+    {
+      "url": "lp.securify.jp",
+      "grade": "F",
+      "score": 18,
+      "max": 78
+    },
+    {
+      "url": "lp.reckoner.io",
+      "grade": "F",
+      "score": 18,
+      "max": 78
+    },
+    {
+      "url": "lp.sreake.com",
+      "grade": "F",
+      "score": 18,
+      "max": 78
+    },
+    {
+      "url": "site.relance.jp",
+      "grade": "F",
+      "score": 18,
+      "max": 78
+    },
+    {
+      "url": "auth.dev-securify.com",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "auth.securify.jp",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "auth.stg-securify.com",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "graphql.stg-securify.com",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "graphql.securify.jp",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "graphql.dev-securify.com",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "oidc-local.stg-securify.com",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "oidc.dev-securify.com",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "oidc.securify.jp",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "oidc.stg-securify.com",
+      "grade": "E",
+      "score": 20,
+      "max": 78
+    },
+    {
+      "url": "note.3-shake.com",
+      "grade": "E",
+      "score": 23,
+      "max": 78
+    },
+    {
+      "url": "pages.3-shake.com",
+      "grade": "E",
+      "score": 24,
+      "max": 78
+    },
+    {
+      "url": "app.stg-securify.com",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "console.dev-securify.com",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "console.securify.jp",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "console.stg-securify.com",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "help.stg-securify.com",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "portal.stg-securify.com",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "my.relance.jp",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "scan.dev-securify.com",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "scan.stg-securify.com",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "stg.my.relance.jp",
+      "grade": "E",
+      "score": 25,
+      "max": 78
+    },
+    {
+      "url": "growi.stg-securify.com",
+      "grade": "E",
+      "score": 26,
+      "max": 78
+    },
+    {
+      "url": "app.dev-securify.com",
+      "grade": "E",
+      "score": 28,
+      "max": 78
+    },
+    {
+      "url": "asm.dev-securify.com",
+      "grade": "E",
+      "score": 28,
+      "max": 78
+    },
+    {
+      "url": "app.securify.jp",
+      "grade": "E",
+      "score": 28,
+      "max": 78
+    },
+    {
+      "url": "help.dev-securify.com",
+      "grade": "E",
+      "score": 28,
+      "max": 78
+    },
+    {
+      "url": "help.securify.jp",
+      "grade": "E",
+      "score": 28,
+      "max": 78
+    },
+    {
+      "url": "portal.securify.jp",
+      "grade": "E",
+      "score": 28,
+      "max": 78
+    },
+    {
+      "url": "portal.dev-securify.com",
+      "grade": "E",
+      "score": 28,
+      "max": 78
+    },
+    {
+      "url": "em.3-shake.com",
+      "grade": "D",
+      "score": 35,
+      "max": 78
+    },
+    {
+      "url": "em.relance.jp",
+      "grade": "D",
+      "score": 35,
+      "max": 78
+    },
+    {
+      "url": "em.securify.jp",
+      "grade": "D",
+      "score": 35,
+      "max": 78
+    },
+    {
+      "url": "em.reckoner.io",
+      "grade": "D",
+      "score": 35,
+      "max": 78
+    },
+    {
+      "url": "em.sreake.com",
+      "grade": "D",
+      "score": 35,
+      "max": 78
+    }
+  ]
+}
