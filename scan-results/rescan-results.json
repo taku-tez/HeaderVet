@@ -1,0 +1,590 @@
+[
+  {
+    "host": "3-shake.com",
+    "grade": "F"
+  },
+  {
+    "host": "admin.api.comm.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "admin.api.comm-stg.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "admin.comm.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "admin.comm-stg.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "admin.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "admin.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "admin.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "ai-agent-server.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "ai-agent-server.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "ai-agent-server.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "api.dev-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "api-local.stg-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "api.securify.jp",
+    "grade": "F"
+  },
+  {
+    "host": "api.stg-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "app.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "app.securify.jp",
+    "grade": "E"
+  },
+  {
+    "host": "app.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "argo-ci.k8s.3-shake.com",
+    "grade": "F"
+  },
+  {
+    "host": "asm.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "auth.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "auth.securify.jp",
+    "grade": "E"
+  },
+  {
+    "host": "auth.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "blog.3-shake.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp.auth.tapioka.org",
+    "grade": "B"
+  },
+  {
+    "host": "cdp-cdn.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-cdn.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-cdn.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-console.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-console.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-console.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-server-autopilot.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-server.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-server.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "cdp-server.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "comm-admin.api.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "comm.api.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "comm-dev.api.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "comm-dev-enterprise.api.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "comm-enterprise.api.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "common.3-shake.com",
+    "grade": "F"
+  },
+  {
+    "host": "comm.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "comm-stg-admin.api.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "comm-stg.api.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "comm-stg-enterprise.api.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "console.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "console.securify.jp",
+    "grade": "E"
+  },
+  {
+    "host": "console.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "crawl-maze.dev-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "dash.k8s.3-shake.com",
+    "grade": "F"
+  },
+  {
+    "host": "dast.stg-securify.com",
+    "grade": "B"
+  },
+  {
+    "host": "docs.dev-securify.com",
+    "grade": "B"
+  },
+  {
+    "host": "dvga.dev-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "ec-cube.dev-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "em.3-shake.com",
+    "grade": "C"
+  },
+  {
+    "host": "em.reckoner.io",
+    "grade": "C"
+  },
+  {
+    "host": "em.relance.jp",
+    "grade": "C"
+  },
+  {
+    "host": "em.securify.jp",
+    "grade": "C"
+  },
+  {
+    "host": "em.sreake.com",
+    "grade": "C"
+  },
+  {
+    "host": "endpoint-e0esekdnegevbzfb.z03.azurefd.net",
+    "grade": "F"
+  },
+  {
+    "host": "enterprise.api.comm.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "enterprise.api.comm-stg.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "enterprise.comm.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "enterprise.comm-stg.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "es-sample.tapioka.org",
+    "grade": "F"
+  },
+  {
+    "host": "geake-dev.tapioka.org",
+    "grade": "F"
+  },
+  {
+    "host": "geake-platform-dev.tapioka.org",
+    "grade": "B"
+  },
+  {
+    "host": "geake.tapioka.org",
+    "grade": "F"
+  },
+  {
+    "host": "graphql.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "graphql.securify.jp",
+    "grade": "E"
+  },
+  {
+    "host": "graphql.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "growi.stg-securify.com",
+    "grade": "D"
+  },
+  {
+    "host": "grpc-server.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "grpc-server.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "grpc-server.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "help.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "help.reckoner-api.com",
+    "grade": "C"
+  },
+  {
+    "host": "help-scan.securify.jp",
+    "grade": "C"
+  },
+  {
+    "host": "help.securify.jp",
+    "grade": "E"
+  },
+  {
+    "host": "help.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "hooks.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "hooks.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "hooks.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "juice-shop.dev-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "lp.3-shake.com",
+    "grade": "E"
+  },
+  {
+    "host": "lp.reckoner.io",
+    "grade": "E"
+  },
+  {
+    "host": "lp.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "lp.securify.jp",
+    "grade": "E"
+  },
+  {
+    "host": "lp.sreake.com",
+    "grade": "E"
+  },
+  {
+    "host": "medrisk.shinshu-md.com",
+    "grade": "F"
+  },
+  {
+    "host": "my.relance.jp",
+    "grade": "E"
+  },
+  {
+    "host": "new.dev-securify.com",
+    "grade": "B"
+  },
+  {
+    "host": "new.securify.jp",
+    "grade": "F"
+  },
+  {
+    "host": "new.stg-securify.com",
+    "grade": "B"
+  },
+  {
+    "host": "note.3-shake.com",
+    "grade": "E"
+  },
+  {
+    "host": "oagent-tunnel1.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "oagent-tunnel1.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "oidc.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "oidc-local.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "oidc.securify.jp",
+    "grade": "E"
+  },
+  {
+    "host": "oidc.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "pages.3-shake.com",
+    "grade": "D"
+  },
+  {
+    "host": "pages.reckoner.io",
+    "grade": "F"
+  },
+  {
+    "host": "pages.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "pages.securify.jp",
+    "grade": "F"
+  },
+  {
+    "host": "pages.sreake.com",
+    "grade": "F"
+  },
+  {
+    "host": "portal.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "portal.securify.jp",
+    "grade": "E"
+  },
+  {
+    "host": "portal.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "press.dev-securify.com",
+    "grade": "B"
+  },
+  {
+    "host": "private-server-autopilot.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "private-server.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "private-server.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "private-server.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "reckoner.io",
+    "grade": "F"
+  },
+  {
+    "host": "register.geake.tapioka.org",
+    "grade": "F"
+  },
+  {
+    "host": "relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "report.dev-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "report.securify.jp",
+    "grade": "F"
+  },
+  {
+    "host": "report.stg-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "sandbox.stg-securify.com",
+    "grade": "F"
+  },
+  {
+    "host": "scan.dev-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "scan.securify.jp",
+    "grade": "F"
+  },
+  {
+    "host": "scan.stg-securify.com",
+    "grade": "E"
+  },
+  {
+    "host": "scheduler.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "scheduler.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "scheduler.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "security.sreake.com",
+    "grade": "F"
+  },
+  {
+    "host": "shireruba.jp",
+    "grade": "F"
+  },
+  {
+    "host": "site.relance.jp",
+    "grade": "E"
+  },
+  {
+    "host": "sreake.com",
+    "grade": "F"
+  },
+  {
+    "host": "stg.3-shake.com",
+    "grade": "F"
+  },
+  {
+    "host": "stg.my.relance.jp",
+    "grade": "E"
+  },
+  {
+    "host": "stg.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "stg.sreake.com",
+    "grade": "F"
+  },
+  {
+    "host": "streaming.dev-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "streaming.reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "streaming.stg-reckoner-api.com",
+    "grade": "F"
+  },
+  {
+    "host": "talent.api.comm.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "talent.api.comm-stg.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "talent.comm.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "talent.comm-stg.relance.jp",
+    "grade": "F"
+  },
+  {
+    "host": "ts.dev-securify.com",
+    "grade": "B"
+  },
+  {
+    "host": "www.3-shake.com",
+    "grade": "F"
+  },
+  {
+    "host": "www.reckoner.io",
+    "grade": "F"
+  },
+  {
+    "host": "www.securify.jp",
+    "grade": "F"
+  },
+  {
+    "host": "www.sreake.com",
+    "grade": "F"
+  }
+]

@@ -14,6 +14,7 @@ import { checkCacheControl } from './checks/cache.js';
 import { checkXContentTypeOptions, checkXXSSProtection } from './checks/misc.js';
 import { checkSetCookie } from './checks/set-cookie.js';
 import { checkDNSPrefetchControl } from './checks/dns-prefetch.js';
+import { checkCORS } from './checks/cors.js';
 import { calculateGrade, meetsMinGrade, parseGrade } from './scoring.js';
 import { formatTable, formatJSON, formatSARIF, formatSummary, formatQuiet } from './reporter.js';
 import type { ScanResult, HeaderCheck, Grade, ScanOptions } from './types.js';
@@ -33,6 +34,7 @@ const ALL_CHECKS = [
   checkCacheControl,
   checkSetCookie,
   checkDNSPrefetchControl,
+  checkCORS,
 ];
 
 export async function scanUrl(url: string, opts: ScanOptions = {}): Promise<ScanResult> {
