@@ -1,7 +1,9 @@
 # 🛡️ HeaderVet
 
-HTTP Security Header checker CLI — **score**, **fix**, and **enforce** security headers.
+[![npm version](https://img.shields.io/npm/v/headervet)](https://www.npmjs.com/package/headervet)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+HTTP Security Header checker CLI — **score**, **fix**, and **enforce** security headers.
 Like [SecurityHeaders.com](https://securityheaders.com) but for your terminal and CI pipeline, with **copy-paste-ready fix suggestions**.
 
 ## Install
@@ -272,6 +274,10 @@ npm install
 npm run build
 npm test
 ```
+
+## Part of xxVet Series
+
+xxVet is a collection of 15 focused security CLI tools. See [full catalog](https://www.notion.so/xxVet-CLI-304b1e6bcbc2817abe62d4aecee9914a).
 
 ## License
 
